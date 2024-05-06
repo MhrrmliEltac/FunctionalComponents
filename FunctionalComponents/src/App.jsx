@@ -1,16 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Modal from "./component/Modal";
 
 function App() {
-  
-
   const [showModal, setShowModal] = useState(false);
 
   const handleShowModal = () => {
     setShowModal(true);
-    document.querySelector(".modal-body").style.display = "block";
-    document.querySelector(".modal-footer").style.display = "block";
-    document.querySelector(".modal-header").style.display = "block";
   };
 
   return (
@@ -27,7 +22,7 @@ function App() {
         </div>
       </div>
 
-      <Modal />
+      {showModal && <Modal setShowModal={setShowModal} />}
     </div>
   );
 }

@@ -1,29 +1,22 @@
-import { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
-function Modal() {
+function Modal({ setShowModal }) {
+  const handleCloseModal = () => {
+    setShowModal(false); 
+  };
+
   useEffect(() => {
     const handleEsc = (event) => {
-      if (event.key === "Escape") {
-        document.querySelector(".modal-body").style.display = "none";
-        document.querySelector(".modal-footer").style.display = "none";
-        document.querySelector(".modal-header").style.display = "none";
+       if (event.key === 'Escape') {
+        handleCloseModal()
       }
     };
-    window.addEventListener("keydown", handleEsc);
+    window.addEventListener('keydown', handleEsc);
 
     return () => {
-      window.removeEventListener("keydown", handleEsc);
+      window.removeEventListener('keydown', handleEsc);
     };
   }, []);
-
-  const [showModal, setShowModal] = useState(false);
-
-  const handleCloseModal = () => {
-    setShowModal(true);
-    document.querySelector(".modal-body").style.display = "none";
-    document.querySelector(".modal-footer").style.display = "none";
-    document.querySelector(".modal-header").style.display = "none";
-  };
 
   return (
     <div className="modal-dialog">
@@ -52,4 +45,5 @@ function Modal() {
     </div>
   );
 }
+
 export default Modal;
